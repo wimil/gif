@@ -1,0 +1,36 @@
+{
+  "name": "wimil/gif",
+  "description": "Gif es un contenedor API de (Giphy, Tenor) para laravel y lumen",
+  "keywords": [
+    "gif",
+    "Giphy",
+    "Tenor",
+    "Laravel"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Andy Reynaldo",
+      "email": "rldev25@gmail.com",
+      "homepage": "https://wimil.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.4.0",
+    "illuminate/support": ">=5.6",
+    "illuminate/database": ">=5.6"
+  },
+  "autoload": {
+    "psr-4": {
+      "Wimil\\Gif\\": "src/"
+    },
+    "files": []
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Wimil\\Gif\\Provider"
+      ]
+    }
+  }
+}
