@@ -14,7 +14,7 @@ class Gif
     /**
      * @return Factories\Gif
      */
-    public function gif()
+    public function get()
     {
         return new Factories\GifFactory($this->client);
     }
