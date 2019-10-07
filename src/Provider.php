@@ -11,19 +11,25 @@ class Provider extends BaseProvider
         $this->publishes([
             __DIR__ . '/../config/gif.php' => config_path('gif.php'),
         ], 'config');
-    }
 
-    public function register()
-    {
         $this->mergeConfigFrom(
             __DIR__ . '/../config/gif.php',
             'gif'
         );
+    }
+
+    public function register()
+    {
+
 
         $this->app->singleton('gif', function ($app) {
             $config = $app['config']->get('gif');
-            $client = new Factories\Client($config[$config['driver']]['base_url'], $config[$config['driver']['api_key']]);
+
+             $client = new Factories\Client($config[$config['driver']]['base_url'], $config[$config['driver']]['api_key']);
+
             return new Gif($client);
         });
+
+        $this->app->alias('gif', 'Wimil\Gif\Gif');
     }
 }

@@ -28,7 +28,7 @@ class GifFactory implements GifInterface
     public function search($query, array $params = [])
     {
         $params['q'] = $query;
-        return $this->client->get("/search", $params);
+        return $this->client->get("search", $params);
     }
     /**
      * Returns meta data about a GIF by id.
@@ -39,7 +39,7 @@ class GifFactory implements GifInterface
      */
     public function get($id)
     {
-        return $this->client->get("/$id");
+        return $this->client->get("$id");
     }
     /**
      * Returns meta data about multiple GIFs by id.
@@ -69,7 +69,7 @@ class GifFactory implements GifInterface
     public function translate($query, array $params = [])
     {
         $params['s'] = $query;
-        return $this->client->get("/translate", $params);
+        return $this->client->get("translate", $params);
     }
     /**
      * Returns a random GIF,
@@ -86,7 +86,7 @@ class GifFactory implements GifInterface
      */
     public function random(array $params = [])
     {
-        return $this->client->get("/random", $params);
+        return $this->client->get("random", $params);
     }
     /**
      * Fetches currently trending GIFs.
@@ -102,6 +102,6 @@ class GifFactory implements GifInterface
      */
     public function trending(array $params = [])
     {
-        return $this->client->get("/trending", $params);
+        return $this->client->get("trending", $params);
     }
 }

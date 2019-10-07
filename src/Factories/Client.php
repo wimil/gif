@@ -3,7 +3,7 @@
 namespace Wimil\Gif\Factories;
 
 use Wimil\Gif\Contracts\ClientInterface;
-use GuzzleHttp\Client as Http;
+use GuzzleHttp\Client as HttpClient;
 
 class Client implements ClientInterface
 {
@@ -20,10 +20,8 @@ class Client implements ClientInterface
     public function __construct($baseUrl, $apiKey)
     {
         $this->client = new HttpClient([
-            'base_url' => $baseUrl,
-            'defaults' => [
-                'query' => ['api_key' => $apiKey]
-            ]
+            'base_uri' => $baseUrl,
+            'query' => ['api_key' => $apiKey]
         ]);
     }
 
@@ -36,7 +34,11 @@ class Client implements ClientInterface
      */
     public function get($endPoint, array $params = [])
     {
-        $response = $this->client->get($endPoint, ['query' => $params]);
+        $response = $this->client->get($endPoint, ['query' => array_merge(
+            $this->client->getConfig('query'),
+            $params
+        )]);
+        //$response = $this->client->request('GET', $endPoint, ['query' => $params]);
         switch ($response->getHeader('content-type')) {
             case "application/json":
                 return $response->json();
