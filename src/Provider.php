@@ -20,8 +20,6 @@ class Provider extends BaseProvider
 
     public function register()
     {
-
-
         $this->app->singleton('gif', function ($app) {
             $config = $app['config']->get('gif');
 
