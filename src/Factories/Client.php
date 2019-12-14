@@ -2,8 +2,8 @@
 
 namespace Wimil\Gif\Factories;
 
-use Wimil\Gif\Contracts\ClientInterface;
 use GuzzleHttp\Client as HttpClient;
+use Wimil\Gif\Contracts\ClientInterface;
 
 class Client implements ClientInterface
 {
@@ -19,9 +19,10 @@ class Client implements ClientInterface
      */
     public function __construct($baseUrl, $apiKey)
     {
+        $paramKey = config('gif.driver') == 'giphy' ? 'api_key' : 'key';
         $this->client = new HttpClient([
             'base_uri' => $baseUrl,
-            'query' => ['api_key' => $apiKey]
+            'query' => [$paramKey => $apiKey],
         ]);
     }
 
